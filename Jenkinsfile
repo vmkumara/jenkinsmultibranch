@@ -4,7 +4,7 @@ pipeline
     agent any
     stages
     {
-        stage('condownload_MASTER')
+        stage('condownload_LOANS')
         {
             steps
             {
@@ -14,7 +14,7 @@ pipeline
                 }
             }
         }
-        stage('conbuild_MASTER')
+        stage('conbuild_LOANS')
         {
             steps
             {
@@ -24,36 +24,4 @@ pipeline
                 }
             }
         }
-        stage('condeployment_MASTER')
-        {
-            steps
-            {
-                script
-                {
-                     cicd.newdeployment("sharedlibrary2","172.31.36.40","testapp")
-                }
-            }
-        }
-        stage('contesting_MASTER')
-        {
-            steps
-            {
-                script
-                {
-                    cicd.newdownload("functionaltesting.git")
-                    cicd.runselenium("sharedlibrary2")
-                }
-            }
-        }
-        stage('condelivery_MASTER')
-        {
-            steps
-            {
-                script
-                {
-                    cicd.newdeployment("sharedlibrary2","172.31.41.26","prodapp")
-                }
-            }
-        }
-    }
-} 
+ }
